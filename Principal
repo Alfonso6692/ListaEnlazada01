@@ -1,0 +1,103 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package listasenlazadas;
+
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author ASUS-VASQUEZ
+ */
+public class Principal {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        int opcion = 0;
+        Lista miLista = new Lista();
+//        miLista.agregandoAlFinal("Lupita");
+//        miLista.agregandoAlFinal("Ana");
+//        miLista.agregandoAlFinal("Juan");
+//        miLista.agregandoAlFinal("María");
+//        miLista.agregandoAlFinal("Fernanda");
+//        miLista.agregandoAlFinal("Flor");
+//        miLista.agregandoAlFinal("Lupe");
+//        miLista.agregandoAlFinal("Katty");
+//        miLista.mostrarLista();
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("\nIngrese la cantidad de elementos");
+        do {
+            try {
+                opcion = Integer.parseInt(JOptionPane.showInputDialog(null, " "
+                        + "1.-Agregar al inicio\n2.- Agregar al fonal \n"
+                        + "3.-Buscar un dato\n4.-Saber cantidad de nodos"
+                        + "\n5.-Primer elemento de la lista\n"
+                        + "6.-Ultimo elemento de la lista\n"
+                        + "7.-Eliminar el incio de la lista"
+                        + "\n8.-Eliminar el final de la lista\n"
+                        + "9.-Saber si la lsita está vacia\n10.-Mostrar la lista"
+                        + "\n11.-Salir\nIngresa una opcion:\n"));
+                switch (opcion) {
+                    case 1:
+                        String dato = JOptionPane.showInputDialog(null, "Ingrese el dato: ");
+                        miLista.agregandoAlInicio(dato);
+                        break;
+                    case 2:
+                        dato = JOptionPane.showInputDialog(null, "Ingresa el dato: ");
+                        miLista.agregandoAlFinal(dato);
+                        break;
+                    case 3:
+                        String buscado = JOptionPane.showInputDialog(null, "Ingrese el dato a buscar: ");
+                        if (miLista.buscarDato(buscado)) {
+                            JOptionPane.showMessageDialog(null, "El dato se encontró");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El dato no se encontró");
+                        }
+                        break;
+                    case 4:
+                        JOptionPane.showMessageDialog(null, "Cantidad de nodos de la lista enlazada");
+                        break;
+                    case 5:
+                        JOptionPane.showMessageDialog(null, "Primer elemento: " + miLista.primerElemento());
+                        break;
+                    case 6:
+                        JOptionPane.showMessageDialog(null, "Ultimo elemento: " + miLista.cantidadNodos());
+                        break;
+                    case 7:
+                        JOptionPane.showMessageDialog(null, "Dato eliminado del inicio: " + miLista.eliminarDatoInicio());
+                        break;
+                    case 8:
+                        JOptionPane.showMessageDialog(null, "Dato eliminado del final: " + miLista.eliminarDatoFin());
+                        break;
+                    case 9:
+                        if (miLista.estaVacia()) {
+                            JOptionPane.showMessageDialog(null, "La lista está vacia: ");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La lista no está vacia!");
+                        }
+                        break;
+                    case 10:
+                        miLista.mostrarLista();
+                        break;
+                    case 11:
+                        JOptionPane.showMessageDialog(null, "Programa finalizado");
+                        break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error. Ingrese un entero: " + e.getMessage());
+            }
+        } while (opcion != 11);
+//        if (miLista.estaVacia()) {
+//            System.out.println("La lista esta vacia");
+//        } else {
+//            System.out.println("La lista esta vacia.");
+//        }
+        System.out.println("Cantidad de elemntos de la lista enlazada :" + miLista);
+////    }
+
+}
+}
