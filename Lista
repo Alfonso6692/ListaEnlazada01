@@ -1,0 +1,122 @@
+package listasenlazadas;
+
+public class Lista {
+
+    Nodo inicio;
+    Nodo fin; // punteros para acceder al inicio y al final de la lista
+    int cont = 0;
+
+    public Lista() {
+        inicio = null;
+        fin = null;
+    }
+
+    public boolean estaVacia() {
+        return inicio == null;
+    }
+
+    // Método para agregar un nodo al inicio de la lista
+    public void agregandoAlInicio(String d) {
+        cont++;
+        if (estaVacia()) {
+            inicio = new Nodo(d, inicio);
+            fin = inicio;
+        } else {
+            inicio = new Nodo(d, inicio);
+        }
+    }
+
+    // Método para agregar un nodo al final de la lista
+    public void agregandoAlFinal(String d) {
+        cont++;
+        if (estaVacia()) {
+            inicio = new Nodo(d, null);
+            fin = inicio;
+        } else {
+            fin.siguiente = new Nodo(d, null);  // El siguiente de 'fin' será el nuevo nodo
+            fin = fin.siguiente;  // Ahora, 'fin' apunta al nuevo nodo
+        }
+    }
+
+    // Método para obtener la cantidad de nodos
+    public int cantidadNodos() {
+        return cont;
+    }
+
+    // Método para mostrar la lista
+    public void mostrarLista() {
+        Nodo aux = inicio;
+        while (aux != null) {
+            System.out.print("[" + aux.dato + "]--->");
+            aux = aux.siguiente;
+        }
+    }
+
+    // Método para eliminar el primer nodo
+    public String eliminarDatoInicio() {
+        if (estaVacia()) {
+            return null; // Lista vacía
+        }
+        
+        String eliminado = inicio.dato;
+        if (cont == 1) {
+            inicio = null;
+            fin = null;
+        } else {
+            inicio = inicio.siguiente;
+        }
+        cont--;
+        return eliminado;
+    }
+
+    // Método para eliminar el último nodo
+    public String eliminarDatoFin() {
+        if (estaVacia()) {
+            return null; // Lista vacía
+        }
+
+        String eliminado = fin.dato;
+        if (inicio == fin) {  // Solo hay un nodo
+            inicio = fin = null;
+        } else {
+            Nodo aux = inicio;
+            while (aux.siguiente != fin) {
+                aux = aux.siguiente;
+            }
+            aux.siguiente = null;
+            fin = aux;
+        }
+        cont--;
+        return eliminado;
+    }
+
+    // Método para buscar un dato en la lista
+    public boolean buscarDato(String d) {
+        boolean encontrado = false;
+        Nodo aux = inicio;
+        while (aux != null) {
+            if (d.equals(aux.dato)) {
+                encontrado = true;
+                break;  // Salir del ciclo si se encuentra el dato
+            }
+            aux = aux.siguiente;
+        }
+        return encontrado;
+    }
+
+    // Método para obtener el primer elemento
+    public String primerElemento() {
+        if (estaVacia()) {
+            return null;  // Si la lista está vacía, no hay primer elemento
+        }
+        return inicio.dato;
+    }
+
+    // Método para obtener el último elemento
+    public String ultimoElemento() {
+        if (estaVacia()) {
+            return null;  // Si la lista está vacía, no hay último elemento
+        }
+        return fin.dato;
+    }
+}
